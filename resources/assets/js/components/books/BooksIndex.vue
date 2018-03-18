@@ -20,11 +20,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    'title', 'author', 'picture', 'isbn', 'description'
                     <tr v-for="book, index in books">
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
-                        <td>{{ book.picture }}</td>
+                        <td><img v-bind:src="book.picture" width="200"></td>
                         <td>{{ book.isbn }}</td>
                         <td>{{ book.description }}</td>
                         <td>
