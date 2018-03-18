@@ -8,15 +8,25 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+window.Vue.use(VueRouter);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import BooksIndex from './components/books/BooksIndex.vue';
+import BookCreate from './components/books/BookCreate.vue';
+import BookEdit from './components/books/BookEdit.vue';
 
-const app = new Vue({
-    el: '#app'
-});
+const routes = [
+    {
+        path: '/',
+        components: {
+            booksIndex: BooksIndex
+        }
+    },
+    {path: '/admin/books/create', component: BookCreate, name: 'createBook'},
+    {path: '/admin/books/edit/:id', component: BookEdit, name: 'editBook'},
+]
+
+const router = new VueRouter({ routes })
+
+const app = new Vue({ router }).$mount('#app')

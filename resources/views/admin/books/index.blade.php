@@ -8,7 +8,12 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    Coming soon
+                    <div class="panel-heading">Books</div>
+
+                    <div class="panel-body table-responsive">
+                        <router-view name="booksIndex"></router-view>
+                        <router-view></router-view>
+                    </div>
                 </div>
             </div>
         </div>
