@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -177,8 +177,8 @@ return [
         Library\Providers\EventServiceProvider::class,
         Library\Providers\RouteServiceProvider::class,
 
+        Barryvdh\Debugbar\ServiceProvider::class,
         Scriptotek\GoogleBooks\GoogleBooksServiceProvider::class,
-
     ],
 
     /*
@@ -228,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'GoogleBooks' => Scriptotek\GoogleBooks\GoogleBooksFacade::class,
 
     ],
