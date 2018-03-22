@@ -14,14 +14,37 @@ use Scriptotek\GoogleBooks\GoogleBooks;
 
 class BookFinderService
 {
-    public static function connect() {
 
-        $books = new GoogleBooks();
+    /**
+     * @var
+     */
+    protected $books;
+
+    /**
+     * Connect - to Google Books API
+     *
+     * @throws \Exception
+     */
+    protected function connect()
+    {
+        try {
+            $this->books = new GoogleBooks();
+        } catch (Exception $e) {
+            throw new \Exception('Could not connect to Google Books API', 500);
+        }
+
+    }
+
+    /**
+     *
+     * @throws \Exception
+     */
+    public function searchByIsbn($isbn)
+    {
+        $this->books = $this->connect();
 
         $count = 0;
-
-        $books->volumes->search()
-        foreach ($books->volumes->search('Pax') as $vol) {
+        foreach ($books->volumes->byIsbn($isbn) as $vol) {
             echo $vol->title . "\n";
             $count++;
         }
@@ -29,7 +52,22 @@ class BookFinderService
         echo "Found " . $count . " books\n";
     }
 
-    public function
+    /**
+     *
+     * @throws \Exception
+     */
+    public function searchByKeyword($keyword)
+    {
+        $this->books = $this->connect();
+
+        $count = 0;
+        foreach ($books->volumes->search($keyword) as $vol) {
+            echo $vol->title . "\n";
+            $count++;
+        }
+
+        echo "Found " . $count . " books\n";
+    }
 
 
 }
